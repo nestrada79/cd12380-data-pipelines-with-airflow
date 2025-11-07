@@ -77,5 +77,6 @@ aws s3 ls s3://airflow-project-nestr/log_json_path.json
 - Docker memory warning (under 4GB) acknowledged
 - Example DAGs will be disabled in `docker-compose.yaml` for cleaner view
 - This repo will contain all project code for grading and reproducibility
+- Project being done locally on students computer d/t issues with Udacity workspace
 
 ---
