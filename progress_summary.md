@@ -79,5 +79,7 @@ aws s3 ls s3://airflow-project-nestr/log_json_path.json
 - Example DAGs will be disabled in `docker-compose.yaml` for cleaner view
 - This repo will contain all project code for grading and reproducibility
 - Project being done locally on students computer d/t issues with Udacity workspace
+- Used set_connections.sh to store AWS connections but added to gitignore to keep credentials secret
+  
 
 ---
