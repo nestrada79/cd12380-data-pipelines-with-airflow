@@ -232,6 +232,23 @@ logs/
 .DS_Store
 Thumbs.db
 desktop.ini
+# Airflow project ignores
+logs/
+__pycache__/
+*.pyc
+.env
+.venv
+.DS_Store
+
+# AWS keys or sensitive info
+set_connections.sh
+*.pem
+
+# Docker and environment artifacts
+*.log
+*.pid
+*.db
+*.sqlite
 
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python
