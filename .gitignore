@@ -250,5 +250,5 @@ set_connections.sh
 *.db
 *.sqlite
 
-
+.env
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python

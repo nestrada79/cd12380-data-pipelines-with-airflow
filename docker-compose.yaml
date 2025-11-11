@@ -117,6 +117,13 @@ services:
   airflow-webserver:
     <<: *airflow-common
     command: webserver
+    env_file:
+      - .env
+    environment:
+      <<: *airflow-common-env
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      REDSHIFT_PASSWORD: ${REDSHIFT_PASSWORD}
     ports:
       - "${AIRFLOW_PORT:-8080}:8080"
     healthcheck:
@@ -134,6 +141,13 @@ services:
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
+    env_file:
+      - .env
+    environment:
+      <<: *airflow-common-env
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      REDSHIFT_PASSWORD: ${REDSHIFT_PASSWORD}
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
       interval: 30s
