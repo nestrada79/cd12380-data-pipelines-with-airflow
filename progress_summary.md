@@ -54,6 +54,8 @@ C:\Users\nestr\cd12380-data-pipelines-with-airflow
   - Song data: `s3://airflow-project-nestr/song-data/`
   - Log JSON path file: `s3://airflow-project-nestr/log_json_path.json`
 
+- **Configured Airflow connections for AWS and Redshift** Added test DAGs and troubleshoot
+
 Data successfully verified with:
 ```bash
 aws s3 ls s3://airflow-project-nestr/log-data/
@@ -65,7 +67,6 @@ aws s3 ls s3://airflow-project-nestr/log_json_path.json
 
 ## 🔧 Next Steps
 
-- [ ] Configure Airflow connections for AWS and Redshift
 - [ ] Implement DAG operators (`StageToRedshift`, `LoadFact`, `LoadDimension`, `DataQuality`)
 - [ ] Validate DAG dependency flow and logic
 - [ ] Push completed project to GitHub and submit
