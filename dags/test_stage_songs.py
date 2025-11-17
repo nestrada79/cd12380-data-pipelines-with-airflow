@@ -23,7 +23,7 @@ with DAG(
         task_id="stage_songs",
         table="staging_songs",
         s3_bucket="airflow-project-nestr",
-        s3_key="song-data",
+        s3_key="song-data/",
         json_path="s3://airflow-project-nestr/song_json_path.json"
 
     )
