@@ -1,7 +1,7 @@
 ## Udacity Project: Data Pipelines with Apache Airflow
 
 **Project Type:** Data Engineering Nanodegree  
-**Student:** Andres Estrada  
+**Student:** Natasha Estrada  
 **Last Updated:** 2025-11-07 02:25:15
 
 ---
