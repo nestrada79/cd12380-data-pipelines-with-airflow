@@ -14,7 +14,7 @@ class StageToRedshiftOperator(BaseOperator):
         FROM '{s3_path}'
         ACCESS_KEY_ID '{access_key}'
         SECRET_ACCESS_KEY '{secret_key}'
-        FORMAT AS JSON '{json_path}'
+        JSON '{json_path}'
         REGION 'us-east-1';
     """
 
@@ -30,7 +30,6 @@ class StageToRedshiftOperator(BaseOperator):
         *args,
         **kwargs,
     ):
-
         super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
         self.table = table
         self.s3_bucket = s3_bucket
@@ -40,26 +39,26 @@ class StageToRedshiftOperator(BaseOperator):
         self.aws_credentials_id = aws_credentials_id
 
     def execute(self, context):
-
         self.log.info(f"Starting COPY into Redshift table: {self.table}")
 
-        # Get AWS credentials from Airflow connection
+        # Get AWS credentials
         aws_hook = S3Hook(aws_conn_id=self.aws_credentials_id)
         credentials = aws_hook.get_credentials()
 
-        # Build full S3 path
+        # Build S3 path
         rendered_key = self.s3_key.format(**context)
         s3_path = f"s3://{self.s3_bucket}/{rendered_key}"
 
-        self.log.info(f"Loading data from {s3_path}")
+        self.log.info(f"Loading data from: {s3_path}")
 
+        # Connect to Redshift
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
 
-        # Clear table before load (Udacity requirement)
-        self.log.info(f"Clearing data from Redshift table {self.table}")
+        # Clear existing data
+        self.log.info(f"Clearing data from Redshift table: {self.table}")
         redshift.run(f"DELETE FROM {self.table}")
 
-        # Build COPY command
+        # Build and log COPY command
         formatted_sql = StageToRedshiftOperator.copy_sql.format(
             table=self.table,
             s3_path=s3_path,
@@ -68,7 +67,10 @@ class StageToRedshiftOperator(BaseOperator):
             secret_key=credentials.secret_key,
         )
 
+        self.log.info(f"COPY SQL being executed:\n{formatted_sql}")
+
+        # Execute COPY
         self.log.info("Running COPY command...")
         redshift.run(formatted_sql)
 
-        self.log.info(f"Successfully loaded data into {self.table}")
+        self.log.info(f"Successfully loaded data into {self.table}.")
