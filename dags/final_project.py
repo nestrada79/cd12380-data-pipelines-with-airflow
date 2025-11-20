@@ -36,7 +36,22 @@ def final_project():
         json_path="s3://airflow-project-nestr/log_json_path.json",
     )
 
-    start_operator >> stage_events_to_redshift >> end_operator
+    # Step 3 (Milestone 3): Stage Songs
+    stage_songs_to_redshift = StageToRedshiftOperator(
+        task_id="Stage_songs",
+        redshift_conn_id="redshift",
+        aws_credentials_id="aws_credentials",
+        table="staging_songs",
+        s3_bucket="airflow-project-nestr",
+        s3_key="song-data",
+        json_path="auto",
+    )
+
+    start_operator >> stage_events_to_redshift >> stage_songs_to_redshift >> end_operator
 
 
 final_project_dag = final_project()
+
+
+
+    
