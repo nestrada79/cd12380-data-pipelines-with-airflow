@@ -2,7 +2,12 @@ from datetime import timedelta
 import pendulum
 from airflow.decorators import dag
 from airflow.operators.dummy import DummyOperator
-from operators import StageToRedshiftOperator
+from operators.stage_redshift import StageToRedshiftOperator
+from operators.load_fact import LoadFactOperator
+from operators.load_dimension import LoadDimensionOperator
+from operators.data_quality import DataQualityOperator
+from helpers.sql_queries import SqlQueries
+
 
 default_args = {
     "owner": "udacity",
@@ -55,12 +60,13 @@ def final_project():
         sql=SqlQueries.songplay_table_insert
     )
 
-    # Songplays depends on BOTH staging tasks
+
+    # Dependencies
+    start_operator >> [stage_events_to_redshift, stage_songs_to_redshift]
     stage_events_to_redshift >> load_songplays_table
     stage_songs_to_redshift >> load_songplays_table
-
-    # End after fact load
     load_songplays_table >> end_operator
+
 
 
 final_project_dag = final_project()
