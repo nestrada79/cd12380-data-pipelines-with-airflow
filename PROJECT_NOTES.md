@@ -102,7 +102,7 @@ Pipeline validated successfully.
 
 ---
 
-## 6. Screenshots to show implementation
+## 6. Screenshots to show successful implementation
 
 ![Final DAG](final_project_dag_successful_run.png)  
 ![](Pipeline_scheduled_run.png)
