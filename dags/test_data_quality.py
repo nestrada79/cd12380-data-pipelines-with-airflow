@@ -25,14 +25,13 @@ with DAG(
         tests=[
             {
                 "sql": "SELECT COUNT(*) FROM songplays;",
-                "expected_result": lambda x: x > 0,  # expect non-zero
+                "expected": 0,
             },
             {
                 "sql": "SELECT COUNT(*) FROM users;",
-                "expected_result": lambda x: x > 0,  # expect non-zero
+                "expected": 0,
             },
         ],
     )
 
     start >> dq_checks
-
