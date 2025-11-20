@@ -25,11 +25,11 @@ with DAG(
         tests=[
             {
                 "sql": "SELECT COUNT(*) FROM songplays;",
-                "expected": >0,
+                "expected": ">0",
             },
             {
                 "sql": "SELECT COUNT(*) FROM users;",
-                "expected": >0,
+                "expected": ">0",
             },
         ],
     )
