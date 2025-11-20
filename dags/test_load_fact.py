@@ -24,7 +24,7 @@ with DAG(
         task_id='load_songplays_fact_test',
         redshift_conn_id='redshift',
         table='songplays',
-        sql=SqlQueries.songplay_table_insert
+        sql_statement=SqlQueries.songplay_table_insert
     )
 
     end = DummyOperator(task_id='end')
