@@ -112,11 +112,11 @@ def final_project():
         task_id="Run_data_quality_checks",
         redshift_conn_id="redshift",
         tests=[
-            {"sql": "SELECT COUNT(*) FROM songplays;", "expected_operator": ">", "expected_value": 0},
-            {"sql": "SELECT COUNT(*) FROM users;", "expected_operator": ">", "expected_value": 0},
-            {"sql": "SELECT COUNT(*) FROM songs;", "expected_operator": ">", "expected_value": 0},
-            {"sql": "SELECT COUNT(*) FROM artists;", "expected_operator": ">", "expected_value": 0},
-            {"sql": "SELECT COUNT(*) FROM time;", "expected_operator": ">", "expected_value": 0},
+            {"sql": "SELECT COUNT(*) FROM songplays;", "expected": ">0"},
+            {"sql": "SELECT COUNT(*) FROM users;", "expected": ">0"},
+            {"sql": "SELECT COUNT(*) FROM songs;", "expected": ">0"},
+            {"sql": "SELECT COUNT(*) FROM artists;", "expected": ">0"},
+            {"sql": "SELECT COUNT(*) FROM time;", "expected": ">0"},
         ],
     )
 
