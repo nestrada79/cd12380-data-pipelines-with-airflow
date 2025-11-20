@@ -22,9 +22,14 @@ def final_project():
     start_operator = DummyOperator(task_id='Begin_execution')
 
     stage_events_to_redshift = StageToRedshiftOperator(
-        task_id='Stage_events',
+        task_id="Stage_events",
+        redshift_conn_id="redshift",
+        aws_credentials_id="aws_credentials",
+        table="staging_events",
+        s3_bucket="airflow-project-nestr",
+        s3_key="log-data",
+        json_path="s3://airflow-project-nestr/log_json_path.json",
     )
-
     stage_songs_to_redshift = StageToRedshiftOperator(
         task_id='Stage_songs',
     )
