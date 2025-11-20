@@ -47,7 +47,20 @@ def final_project():
         json_path="auto",
     )
 
-    start_operator >> stage_events_to_redshift >> stage_songs_to_redshift >> end_operator
+    # Load Songplays
+    load_songplays_table = LoadFactOperator(
+        task_id="Load_songplays_fact_table",
+        redshift_conn_id="redshift",
+        table="songplays",
+        sql=SqlQueries.songplay_table_insert
+    )
+
+    # Songplays depends on BOTH staging tasks
+    stage_events_to_redshift >> load_songplays_table
+    stage_songs_to_redshift >> load_songplays_table
+
+    # End after fact load
+    load_songplays_table >> end_operator
 
 
 final_project_dag = final_project()
