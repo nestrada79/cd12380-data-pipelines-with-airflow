@@ -25,7 +25,7 @@ def final_project():
     start_operator = DummyOperator(task_id='Begin_execution')
     end_operator = DummyOperator(task_id='Stop_execution')
 
-    # Stage_events only
+    # Stage_events 
     stage_events_to_redshift = StageToRedshiftOperator(
         task_id="Stage_events",
         redshift_conn_id="redshift",
@@ -36,7 +36,7 @@ def final_project():
         json_path="s3://airflow-project-nestr/log_json_path.json",
     )
 
-    # Step 3 (Milestone 3): Stage Songs
+    # Stage Songs
     stage_songs_to_redshift = StageToRedshiftOperator(
         task_id="Stage_songs",
         redshift_conn_id="redshift",
