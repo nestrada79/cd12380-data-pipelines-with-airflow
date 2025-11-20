@@ -8,7 +8,7 @@ from operators.load_fact import LoadFactOperator
 from operators.load_dimension import LoadDimensionOperator
 from operators.data_quality import DataQualityOperator
 
-from helpers.sql_queries import SqlQueries
+from helpers import SqlQueries
 
 
 default_args = {
@@ -67,7 +67,7 @@ def final_project():
         task_id="Load_songplays_fact_table",
         redshift_conn_id="redshift",
         table="songplays",
-        sql_statement=SqlQueries.songplay_table_insert,
+        sql=SqlQueries.songplay_table_insert,
     )
 
     # -----------------------------------------------------
@@ -77,7 +77,7 @@ def final_project():
         task_id="Load_user_dim_table",
         redshift_conn_id="redshift",
         table="users",
-        sql_statement=SqlQueries.user_table_insert,
+        sql=SqlQueries.user_table_insert,
         insert_mode="truncate",
     )
 
@@ -85,7 +85,7 @@ def final_project():
         task_id="Load_song_dim_table",
         redshift_conn_id="redshift",
         table="songs",
-        sql_statement=SqlQueries.song_table_insert,
+        sql=SqlQueries.song_table_insert,
         insert_mode="truncate",
     )
 
@@ -93,7 +93,7 @@ def final_project():
         task_id="Load_artist_dim_table",
         redshift_conn_id="redshift",
         table="artists",
-        sql_statement=SqlQueries.artist_table_insert,
+        sql=SqlQueries.artist_table_insert,
         insert_mode="truncate",
     )
 
@@ -101,7 +101,7 @@ def final_project():
         task_id="Load_time_dim_table",
         redshift_conn_id="redshift",
         table="time",
-        sql_statement=SqlQueries.time_table_insert,
+        sql=SqlQueries.time_table_insert,
         insert_mode="truncate",
     )
 
