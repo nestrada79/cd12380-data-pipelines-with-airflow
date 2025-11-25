@@ -17,8 +17,10 @@ default_args = {
     "retries": 3,
     "retry_delay": timedelta(minutes=5),
     "email_on_retry": False,
-    "start_date": pendulum.datetime(2023, 1, 1),
+    "start_date": pendulum.datetime(2025, 11, 25, tz="UTC"),
 }
+
+
 
 @dag(
     default_args=default_args,
